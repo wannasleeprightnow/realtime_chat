@@ -12,6 +12,7 @@ from sqlalchemy.ext.asyncio import (
 from adapters.sqlalchemy_db.repositories.user import SqlalUserRepository
 from adapters.sqlalchemy_db.uow import SqlalUoW
 from common.settings import PostgresSettings, get_settings
+from ports.repositories.user import UserRepository
 from ports.uow import UoW
 from services.user import UserService
 
@@ -39,12 +40,12 @@ def create_async_sessionmaker(
 
 def create_uow(
     async_session_maker: async_sessionmaker[AsyncSession],
-    user_repository: SqlalUserRepository,
+    user_repository: UserRepository,
 ) -> SqlalUoW:
     return SqlalUoW(async_session_maker, user_repository)
 
 
-def create_user_repository() -> SqlalUserRepository:
+def create_user_repository() -> UserRepository:
     return SqlalUserRepository()
 
 

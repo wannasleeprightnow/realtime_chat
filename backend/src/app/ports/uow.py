@@ -1,4 +1,3 @@
-# ruff: noqa: ANN201
 from abc import ABC, abstractmethod
 from typing import Self
 
@@ -20,7 +19,7 @@ class UoW(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def __aexit__(self, *args: tuple) -> None:  # pyright: ignore
+    async def __aexit__(self, *args: tuple) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingTypeArgument]
         raise NotImplementedError
 
     @abstractmethod

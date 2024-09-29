@@ -40,9 +40,9 @@ class AuthSettings(BaseSettings):
 
 
 class Settings:
-    app_settings = AppSettings()  # type: ignore
-    postgres_settings = PostgresSettings()  # type: ignore
-    auth_settings = AuthSettings()  # type: ignore
+    app_settings = AppSettings()  # pyright: ignore[reportCallIssue]
+    postgres_settings = PostgresSettings()  # pyright: ignore[reportCallIssue]
+    auth_settings = AuthSettings() # pyright: ignore[reportCallIssue]
 
 
 @lru_cache
