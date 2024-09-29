@@ -24,7 +24,7 @@ class SqlalUoW(UoW):
     def get_session(self) -> AsyncSession:
         return self._session
 
-    async def __aexit__(self, *args: tuple) -> None:  # type: ignore
+    async def __aexit__(self, *args: tuple) -> None:  # pyright: ignore[reportUnknownParameterType, reportMissingTypeArgument]
         await self.rollback()
         await self._session.close()
 
