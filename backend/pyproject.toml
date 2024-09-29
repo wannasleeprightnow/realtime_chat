@@ -5,7 +5,6 @@ description = ""
 authors = ["wannasleep <wannasleeprightnowww@gmail.com>"]
 readme = "README.md"
 packages = [
-  { include = "app", from="src" },
   { include = "src" },
 ]
 
@@ -34,7 +33,7 @@ target-version = ['py312']
 skip-magic-trailing-comma = false
 
 [tool.pyright]
-extraPaths = ["./src/app"]
+extraPaths = ["./src"]
 
 [tool.pyright.analysis]
 inlayHints.callArgumentNames = "off"

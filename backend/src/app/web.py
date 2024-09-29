@@ -1,17 +1,17 @@
-from depends import init_depends
 from fastapi import FastAPI
-from middlewares import init_middlewares
-from routers import init_routers
 
-from common.settings import get_settings
+from app.common.settings import settings
+from app.depends import init_depends
+from app.middlewares import init_middlewares
+from app.routers import init_routers
 
 
 def create_app() -> FastAPI:
     app = FastAPI(
-        debug=get_settings().app_settings.debug,
-        title=get_settings().app_settings.title,
-        docs_url=get_settings().app_settings.docs_url,
-        openapi_url=get_settings().app_settings.openapi_url,
+        debug=settings.app_settings.debug,
+        title=settings.app_settings.title,
+        docs_url=settings.app_settings.docs_url,
+        openapi_url=settings.app_settings.openapi_url,
     )
 
     init_depends(app)
