@@ -9,12 +9,10 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from adapters.sqlalchemy_db.repositories.user import SqlalUserRepository
-from adapters.sqlalchemy_db.uow import SqlalUoW
-from common.settings import PostgresSettings, get_settings
-from ports.repositories.user import UserRepository
-from ports.uow import UoW
-from services.user import UserService
+from app.adapters.sqlalchemy_db.uow import SqlalUoW
+from app.common.settings import PostgresSettings, settings
+from app.ports.uow import UoW
+from app.services.user import UserService
 
 
 def create_async_sessionmaker(
@@ -40,13 +38,8 @@ def create_async_sessionmaker(
 
 def create_uow(
     async_session_maker: async_sessionmaker[AsyncSession],
-    user_repository: UserRepository,
 ) -> SqlalUoW:
-    return SqlalUoW(async_session_maker, user_repository)
-
-
-def create_user_repository() -> UserRepository:
-    return SqlalUserRepository()
+    return SqlalUoW(async_session_maker)
 
 
 def create_user_service() -> UserService:
@@ -54,15 +47,10 @@ def create_user_service() -> UserService:
 
 
 def init_depends(app: FastAPI) -> None:
-    async_session_maker = create_async_sessionmaker(
-        get_settings().postgres_settings
-    )
-
-    user_repository = create_user_repository()
+    async_session_maker = create_async_sessionmaker(settings.postgres_settings)
 
     app.dependency_overrides[UoW] = partial(
         create_uow,
         async_session_maker,
-        user_repository,
     )
     app.dependency_overrides[UserService] = create_user_service

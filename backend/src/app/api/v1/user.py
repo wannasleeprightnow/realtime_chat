@@ -2,10 +2,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Body, Depends
 
-from api.schemas.user import UserBaseScheme, UserCreateScheme
-from domain.models.user import User
-from ports.uow import UoW
-from services.user import UserService
+from app.api.schemas.user import UserBaseScheme, UserCreateScheme
+from app.domain.models.user import User
+from app.ports.uow import UoW
+from app.services.user import UserService
 
 router = APIRouter(prefix="/user")
 

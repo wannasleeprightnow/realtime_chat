@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Self
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from ports.repositories.user import UserRepository
+from app.ports.repositories.user import UserRepository
 
 
 class UoW(ABC):
@@ -11,11 +9,6 @@ class UoW(ABC):
 
     @abstractmethod
     async def __aenter__(self) -> Self:
-        raise NotImplementedError
-
-    @property
-    @abstractmethod
-    def get_session(self) -> AsyncSession:
         raise NotImplementedError
 
     @abstractmethod
