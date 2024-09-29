@@ -1,0 +1,46 @@
+name: lint_and_types
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.12"
+    
+    - name: Change directory to backend
+      run: |
+        cd backend/
+
+    - name: Install Poetry
+      run: |
+        pip install poetry
+
+    - name: Validate the structure of the pyproject.toml
+      run: |
+        poetry check
+
+    - name: Verify that poetry.lock is consistent with pyproject.toml
+      run: |
+        poetry check --lock
+
+    - name: Install dependencies
+      run: |
+        poetry install --with=lint --no-interaction --no-ansi
+    
+    - name: Lint by ruff
+      run: |
+        poetry run ruff format src/ --config pyproject.toml
+
+    - name: Lint by ruff
+      run: |
+        poetry run ruff check src/ --config pyproject.toml
+
+    - name: Check types by pyright
+      run: |
+        poetry run pyright

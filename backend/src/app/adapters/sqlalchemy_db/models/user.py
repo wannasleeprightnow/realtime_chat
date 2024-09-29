@@ -2,8 +2,8 @@ import uuid
 
 from sqlalchemy.orm import Mapped, mapped_column
 
+from adapters.sqlalchemy_db.models.base import Base
 from domain.models.user import User
-from .base import Base
 
 
 class UserModel(Base):
