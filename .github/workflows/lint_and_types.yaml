@@ -5,8 +5,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    working-directory: ./backend
-
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
       - name: Install Python
