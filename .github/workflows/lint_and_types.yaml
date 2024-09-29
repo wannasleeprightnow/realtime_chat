@@ -5,6 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    working-directory: ./backend
 
     steps:
       - uses: actions/checkout@v4
@@ -12,10 +13,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-    
-      - name: Change directory to backend
-        run: |
-          cd backend/
 
       - name: Install Poetry
         run: |

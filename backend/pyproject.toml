@@ -51,6 +51,7 @@ formatStrings = true
 
 [tool.ruff]
 line-length = 79
+extend-exclude = ["backend/src/app/adapters/sqlalchemy_db/migrations/"]
 
 [tool.ruff.lint]
 select = [
@@ -76,7 +77,6 @@ select = [
     "ANN",
 ]
 ignore = ["ANN101", "ISC001"]
-
 
 [tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
