@@ -1,9 +1,9 @@
-from fastapi import FastAPI
-
-from common.settings import get_settings
 from depends import init_depends
+from fastapi import FastAPI
 from middlewares import init_middlewares
 from routers import init_routers
+
+from common.settings import get_settings
 
 
 def create_app() -> FastAPI:

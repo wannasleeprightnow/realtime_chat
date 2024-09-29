@@ -26,8 +26,12 @@ db = os.getenv("POSTGRES_DB")
 
 config.set_main_option(
     "sqlalchemy.url",
-    (f"postgresql+asyncpg://{user}:" f"{password}@{host}:" f"{port}/{db}")
-    + "?async_fallback=True",
+    (
+        f"postgresql+asyncpg://{user}:"
+        f"{password}@{host}:"
+        f"{port}/{db}"
+        "?async_fallback=True"
+    ),
 )
 # add your model's MetaData object here
 # for 'autogenerate' support

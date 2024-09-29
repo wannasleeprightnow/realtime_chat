@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from domain.models.user import User
 from fastapi import APIRouter, Depends
+
+from api.schemas.user import UserBaseScheme, UserCreateScheme
+from domain.models.user import User
 from ports.uow import UoW
 from services.user import UserService
-
-from ..schemas.user import UserBaseScheme, UserCreateScheme
 
 router = APIRouter(prefix="/user")
 
